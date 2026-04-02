@@ -1,65 +1,106 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { guests } from "./guests";
 
 export default function Home() {
+  const [query, setQuery] = useState("");
+
+  const normalizedQuery = query.trim().toLowerCase();
+  const results =
+    normalizedQuery.length >= 2
+      ? guests.filter((g) => {
+          const full = `${g.firstName} ${g.lastName}`.toLowerCase();
+          return (
+            full.includes(normalizedQuery) ||
+            g.firstName.toLowerCase().includes(normalizedQuery) ||
+            g.lastName.toLowerCase().includes(normalizedQuery)
+          );
+        })
+      : [];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen flex flex-col items-center px-6 py-16 sm:py-24">
+      {/* Header */}
+      <header className="text-center mb-12">
+        <h1 className="font-[family-name:var(--font-playfair)] text-dusty-blue text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight">
+          Rita &amp; Amir&apos;s Wedding
+        </h1>
+        <div className="mt-6 flex items-center justify-center gap-4">
+          <span className="block h-px w-12 bg-dusty-blue-light opacity-60" />
+          <p className="font-[family-name:var(--font-cormorant)] text-dusty-blue-dark text-lg sm:text-xl tracking-wide">
+            April 18th, 2026
           </p>
+          <span className="block h-px w-12 bg-dusty-blue-light opacity-60" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <p className="font-[family-name:var(--font-cormorant)] text-dusty-blue-dark/80 text-lg sm:text-xl mt-1 tracking-wide">
+          El Gouna, Egypt
+        </p>
+      </header>
+
+      {/* Decorative divider */}
+      <div className="flex items-center gap-3 mb-10">
+        <span className="block h-px w-16 bg-dusty-blue-light/40" />
+        <svg
+          className="w-5 h-5 text-dusty-blue-light"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" opacity="0" />
+          <circle cx="12" cy="12" r="2" />
+        </svg>
+        <span className="block h-px w-16 bg-dusty-blue-light/40" />
+      </div>
+
+      {/* Search */}
+      <div className="w-full max-w-md mb-10">
+        <label
+          htmlFor="guest-search"
+          className="block text-center font-[family-name:var(--font-cormorant)] text-dusty-blue-dark text-xl mb-4 font-medium"
+        >
+          Find Your Seat
+        </label>
+        <input
+          id="guest-search"
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Enter your name..."
+          className="w-full px-5 py-3 rounded-full border border-dusty-blue-light/50 bg-white
+                     text-center font-[family-name:var(--font-cormorant)] text-lg text-dusty-blue-dark
+                     placeholder:text-dusty-blue-light/70
+                     focus:outline-none focus:ring-2 focus:ring-dusty-blue/40 focus:border-dusty-blue
+                     transition-all duration-200"
+        />
+      </div>
+
+      {/* Results */}
+      <div className="w-full max-w-md">
+        {normalizedQuery.length >= 2 && results.length === 0 && (
+          <p className="text-center font-[family-name:var(--font-cormorant)] text-dusty-blue-dark/60 text-lg">
+            No guests found — please check the spelling and try again.
+          </p>
+        )}
+
+        {results.length > 0 && (
+          <ul className="space-y-3">
+            {results.map((guest, i) => (
+              <li
+                key={`${guest.firstName}-${guest.lastName}-${i}`}
+                className="flex items-center justify-between px-6 py-4
+                           bg-dusty-blue-50 rounded-xl border border-dusty-blue-100"
+              >
+                <span className="font-[family-name:var(--font-cormorant)] text-dusty-blue-dark text-lg font-semibold">
+                  {guest.firstName} {guest.lastName}
+                </span>
+                <span className="font-[family-name:var(--font-cormorant)] text-dusty-blue text-base font-medium capitalize">
+                  {guest.table}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </main>
   );
 }
