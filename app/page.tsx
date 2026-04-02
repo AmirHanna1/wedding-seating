@@ -23,17 +23,17 @@ export default function Home() {
     <main className="min-h-screen flex flex-col items-center px-6 py-16 sm:py-24">
       {/* Header */}
       <header className="text-center mb-12">
-        <h1 className="font-[family-name:var(--font-playfair)] text-dusty-blue text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight">
+        <h1 className="font-(family-name:--font-playfair) text-dusty-blue text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight">
           Rita &amp; Amir&apos;s Wedding
         </h1>
         <div className="mt-6 flex items-center justify-center gap-4">
           <span className="block h-px w-12 bg-dusty-blue-light opacity-60" />
-          <p className="font-[family-name:var(--font-cormorant)] text-dusty-blue-dark text-lg sm:text-xl tracking-wide">
+          <p className="font-(family-name:--font-cormorant) text-dusty-blue-dark text-lg sm:text-xl tracking-wide">
             April 18th, 2026
           </p>
           <span className="block h-px w-12 bg-dusty-blue-light opacity-60" />
         </div>
-        <p className="font-[family-name:var(--font-cormorant)] text-dusty-blue-dark/80 text-lg sm:text-xl mt-1 tracking-wide">
+        <p className="font-(family-name:--font-cormorant) text-dusty-blue-dark/80 text-lg sm:text-xl mt-1 tracking-wide">
           El Gouna, Egypt
         </p>
       </header>
@@ -56,7 +56,7 @@ export default function Home() {
       <div className="w-full max-w-md mb-10">
         <label
           htmlFor="guest-search"
-          className="block text-center font-[family-name:var(--font-cormorant)] text-dusty-blue-dark text-xl mb-4 font-medium"
+          className="block text-center font-(family-name:--font-cormorant) text-dusty-blue-dark text-xl mb-4 font-medium"
         >
           Find Your Seat
         </label>
@@ -67,7 +67,7 @@ export default function Home() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter your name..."
           className="w-full px-5 py-3 rounded-full border border-dusty-blue-light/50 bg-white
-                     text-center font-[family-name:var(--font-cormorant)] text-lg text-dusty-blue-dark
+                     text-center font-(family-name:--font-cormorant) text-lg text-dusty-blue-dark
                      placeholder:text-dusty-blue-light/70
                      focus:outline-none focus:ring-2 focus:ring-dusty-blue/40 focus:border-dusty-blue
                      transition-all duration-200"
@@ -77,7 +77,7 @@ export default function Home() {
       {/* Results */}
       <div className="w-full max-w-md">
         {normalizedQuery.length >= 2 && results.length === 0 && (
-          <p className="text-center font-[family-name:var(--font-cormorant)] text-dusty-blue-dark/60 text-lg">
+          <p className="text-center font-(family-name:--font-cormorant) text-dusty-blue-dark/60 text-lg">
             No guests found — please check the spelling and try again.
           </p>
         )}
@@ -90,10 +90,10 @@ export default function Home() {
                 className="flex items-center justify-between px-6 py-4
                            bg-dusty-blue-50 rounded-xl border border-dusty-blue-100"
               >
-                <span className="font-[family-name:var(--font-cormorant)] text-dusty-blue-dark text-lg font-semibold">
+                <span className="font-(family-name:--font-cormorant) text-dusty-blue-dark text-lg font-semibold">
                   {guest.firstName} {guest.lastName}
                 </span>
-                <span className="font-[family-name:var(--font-cormorant)] text-dusty-blue text-base font-medium capitalize">
+                <span className="font-(family-name:--font-cormorant) text-dusty-blue text-base font-medium capitalize">
                   {guest.table}
                 </span>
               </li>
