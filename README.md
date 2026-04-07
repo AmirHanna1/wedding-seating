@@ -8,7 +8,7 @@ Anyone who's planned a wedding knows the seating chart is one of the most tediou
 
 This project replaces all of that with a simple search. Upload a CSV of guest names and table assignments, deploy to Vercel, and you're done. Guests pull up the site on their phone (or scan a QR code at the entrance) and search their name to find their table. If assignments change, you update the CSV, redeploy in seconds, and the live site is always up to date.
 
-It's also useful for ushers — instead of flipping through a printed list, they can just type a guest's name and direct them to the right table.
+It's also useful for ushers — instead of flipping through a printed list, they can just type a guest's name and direct them to the right table. Think about it: if an usher spends even one minute scanning a list per guest, that's over 300 minutes of cumulative lookup time at a 300-person wedding. It's a bottleneck that creates lines at the door and a frustrating first impression for guests. A search bar makes it instant.
 
 ## How it works
 
